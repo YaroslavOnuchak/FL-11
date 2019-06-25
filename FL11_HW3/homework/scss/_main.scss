@@ -1,0 +1,249 @@
+
+
+
+@mixin bhover{
+	background: black;
+}
+
+
+
+
+
+body{
+	background:$baColor;
+	margin:0;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+.header {
+	background:$bgI no-repeat center bottom;
+	border-radius: 0 0 40%/50% 0;
+	margin: 0;
+	min-height:900px;
+	background-size: cover;
+	.landing-logo{
+		  display: flex;
+
+		  img{
+			  position: relative;
+			  top: 25px;
+			  left: 150px;
+			  width: 50px;
+			  height: 50px;
+		  }
+		  p{color : $tColor;
+			  font-size: 25px;
+			  font-weight: 700;
+			  margin-left: 150px;
+			  span{
+				  display: block;
+				  font-size: 13px;
+				  text-align: center;
+			  }
+		  }
+	}
+	.header-wrap{
+		width: 580px;
+		margin-left: 150px;
+		.header_heading{
+			color: $tColor;
+		font-size: 60px;
+		font-weight: 700;
+		margin-top: 90px;
+		position: relative;
+			z-index: 1;
+			&:after{
+				content: '';
+				background-color: $behColor;
+				height: 25px;
+				width: 40%;
+				display: block;
+				position: absolute;
+				bottom: 5px;
+				z-index: -1;
+
+			}
+		}
+		.header_text{
+			color: $tColor;
+			font-size: 15px;
+			line-height: 1.2em;
+			white-space: pre;
+			position: relative;
+			margin-top: -15px;
+			margin-left: -30px;
+		}
+
+
+	}
+
+
+}
+.header_button{
+	color: white;
+	width: 140px;
+	height: 50px;
+	font-size: 20px;
+	border: none;
+	border-radius: 5px;
+	background: $butColorB;
+	&:hover{
+		@include bhover;
+	}
+
+}
+.section{
+	.section_text{
+		color: $tColor;
+		text-align: center;
+		position: relative;
+		font-size: 45px;
+		font-weight: 700;
+		margin: 40px 0 20px 0;
+		z-index: 1;
+		&:after{content: '';
+			background-color: $behColor;
+			height: 20px;
+			width: 200px;
+			display: block;
+			position: absolute;
+			bottom: 5px;
+			left: 770px;
+			z-index: -1;
+		}
+	}
+	.section_card_wrap{
+		display: flex;
+		lex-flow: row nowrap;
+		height: 100%;
+		margin-left: 15%;
+		margin-right: 15%;
+		.section_card{
+			background:$bColorP;
+			color: white;
+			margin: 10px;
+			padding: 20px;
+			width: 25%;
+			position: relative;
+			z-index: -5;
+			border-radius: 5px;
+			.section_card_img{
+				width: 100%;
+			}
+		}
+		.section_card_heading{
+			font-family: 'Source Sans Pro', sans-serif;
+			padding: 0;
+			margin-left: 70px;
+			font-size: 20px;
+			font-weight: 600;
+			position: relative;
+			display: inline-block;
+
+			z-index: 1;
+			span{
+				&:after {
+					content: '';
+					background-color: $behColor;
+					height: 8px;
+					width: 100%;
+					display: inherit;
+					position: absolute;
+					bottom: 2px;
+					z-index: -1;
+				}
+			}
+
+
+
+		}
+		.section_card_text{
+			text-align: center;
+			font-family: $text;
+		}
+	}
+	.section_banner{
+		display: flex;
+		justify-content: space-between;
+		background: linear-gradient(to right,$butColorB, $behColor);
+		width: 40%;
+
+		position: relative;
+
+		margin-left: 20%;
+		padding: 30px 120px 30px 120px;
+		margin-top: 60px;
+		bottom: -76px;
+		.section_banner_text_wrap{
+			.section_banner_heading{
+				color: $tColor;
+				font-family: 'Source Sans Pro', sans-serif;
+				font-size: 30px;
+				font-weight: 700;
+				position: relative;
+				z-index: 1;
+				&::after{
+					content: '';
+					background-color: $behColor;
+					height: 20px;
+					width: 15%;
+					display: block;
+					position: absolute;
+					margin: auto;
+					margin-left: 30%;
+					bottom: 5px;
+					z-index: -1;
+				}
+			}
+			.section_banner_text{
+				font-family: $text;
+				color: white;
+				font-size: 15px;
+			}
+		}
+		.section_banner_button{
+			@extend.header_button;
+			margin-top: 6%;
+			&:hover{
+				@include bhover;
+			}
+		}
+	}
+}
+.footer{
+	background: $bColorP;
+	padding: 100px 0 30px 0;
+	display: flex;
+	vertical-align: -25px;
+	.footer-wrap{
+		font-family: $text;
+		display: flex;
+		justify-content: space-between;
+		margin: auto;
+		color: white;
+		.footer_logo{
+			color: white;
+			display: flex;
+			img{height: 45px;
+				width: 45px;
+				position: relative;
+				margin-top: 25px;
+				margin-right: 10px;
+			}
+			p{font-size: 20px;
+
+				span{
+					display: block;
+					font-size: 13px;
+					text-align: center;
+				}
+			}
+		}
+		.footer_text{
+			font-size: 15px;
+			width: 25%;
+
+		}
+	}
+
+}
+
