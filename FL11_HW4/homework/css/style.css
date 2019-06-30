@@ -280,45 +280,34 @@ input {
     padding: 10px 10px;
     color: #F0F0F0;
 }
-
 .form-subscribe{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
 }
-
 label{
-    font-size: 18px;
+    font-size: 20px;
 }
 
 label > span {
     font-weight: 600;
 }
-
 .footer{
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
-
 .footer-ul {
     display: flex;
 }
 
 .footer li {
-    margin: 20px 6px;
-    list-style: none;
+    margin: 15px 10px;
 }
-
-
-
 .footer li a {
     font-weight: 500;
     color: #000000;
 }
-
 .epam {
     color: #9E9E9E;
 }
