@@ -312,9 +312,7 @@ label > span {
     list-style: none;
 }
 
-.footer li:last-child {
-    margin-right: 0;
-}
+
 
 .footer li a {
     font-weight: 500;
