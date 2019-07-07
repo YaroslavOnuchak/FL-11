@@ -1,4 +1,3 @@
-
 let ay = prompt('input Y point A');
 ay = parseInt(ay);
 let ax = prompt('input X point A');

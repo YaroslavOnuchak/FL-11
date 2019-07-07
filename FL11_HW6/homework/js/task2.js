@@ -1,5 +1,3 @@
-// Your code goes here
-
 let A = prompt('input lenght side A of Triangle');
 A = parseInt(A);
 let B = prompt('input lenght side B of Triangle');
