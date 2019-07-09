@@ -1,4 +1,4 @@
-let number, start, numPocket, increase = 4, userPrize = 0, minDefNum = 0, maxDefNum = 8;
+let number, start, Pocket, increase = 4, userPrize = 0, minDefNum = 0, maxDefNum = 8;
 let atteFirst = 100, atteSecon = 50, atteThir = 25;
 let prize = [atteFirst, atteSecon, atteThir];
 let numMax = maxDefNum;
@@ -19,9 +19,9 @@ do {
             let totalPrize = `Total prize: ${userPrize}\n`
             let posiblePrize = `Possible price on current attempt: ${prize[i]}`;
             let message = `${MinMax}${Attempt}${totalPrize}${posiblePrize}`;
-            numPocket = +prompt(`Enter a number of pocket on which the ball could land. \n${message}`);
-            console.log(numPocket);
-            if (number === numPocket) {
+            Pocket = +prompt(`Enter a number of pocket on which the ball could land. \n${message}`);
+            console.log(Pocket);
+            if (number === Pocket) {
                 userPrize += prize[i];
                 start = confirm(`Congratulation, you won! Your prize is: ${userPrize} $.\nDo you want to continue?`);
                 if (start) {
