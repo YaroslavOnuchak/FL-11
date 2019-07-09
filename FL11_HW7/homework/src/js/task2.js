@@ -13,11 +13,11 @@ do {
     number = Math.floor(Math.random() * (maxNum - minNum) + minNum);
     while (win === false) {
         for (let i = 0; i <= attempts; i++) {
-            let messageMinMax = `Choose a roulette pocket number from ${minNum} to ${maxNum}\n`;
-            let messageAttempts = `Attempts left: ${attemptsLeft}\n`;
+            let MinMax = `Choose a roulette pocket number from ${minNum} to ${maxNum}\n`;
+            let Attempt = `Attempts left: ${attemptsLeft}\n`;
             let totalPrize = `Total prize: ${userPrize}\n`
             let posiblePrize = `Possible price on current attempt: ${prize[i]}`;
-            let message = `${messageMinMax}${messageAttempts}${totalPrize}${posiblePrize}`;
+            let message = `${MinMax}${Attempt}${totalPrize}${posiblePrize}`;
             numPocket = +prompt(`Enter a number of pocket on which the ball could land. \n${message}`);
             console.log(numPocket);
             if (number === numPocket) {
