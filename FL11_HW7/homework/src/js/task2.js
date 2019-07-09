@@ -1,8 +1,8 @@
-let number, start, increase = 4, userPrize = 0, numPock, minDefNum = 0, maxDefNum = 8;
+let number, start, increase = 4, userPrize = 0, numPock, minNumRange = 0, maxNumRange = 8;
 let atteFirst = 100, atteSecon = 50, atteThir = 25;
 let prize = [atteFirst, atteSecon, atteThir];
-let numMax = maxDefNum;
-let numMin = minDefNum;
+let numMax = maxNumRange;
+let numMin = minNumRange;
 
 do {
     start = confirm(`Do you want to play a game?`);
@@ -41,7 +41,7 @@ do {
                     start = confirm(`Do you want to play a game again?`);
                     win = true;
                     userPrize = 0;
-                    numMax = maxDefNum;
+                    numMax = maxNumRange;
                     prize = [atteFirst, atteSecon, atteThir];
                 }
             } attemptsLeft--;
