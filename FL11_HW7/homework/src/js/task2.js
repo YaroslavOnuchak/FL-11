@@ -1,54 +1,51 @@
 let userPrize = 0;
-let  step = 4;
 let minNumRange = 0;
 let maxNumRange = 8;
 let atteFirst = 100, atteSecon = 50, atteThir = 25;
-let prize = [atteFirst, atteSecon, atteThir];
-let numMax = maxNumRange;
+let prize = [0, atteThir, atteSecon, atteFirst];
+let numMax = maxNumRange+1;
 let numMin = minNumRange;
- let number, start, Pocket;
-
-do {
-    start = confirm(`Do you want to play a game?`);
-    if (!start) {
-        alert(`You did not become a billionaire, but can.`);
-    }
-} while (!start);
-do {
-    let attempts = 2, win = false, attemptsLeft = attempts + 1;
-    number = Math.floor(Math.random() * (numMax - numMin) + numMin);
-    while (win === false) {
-        for (let i = 0; i <= attempts; i++) {
-            let MinMax = `Choose a roulette pocket number from ${numMin} to ${numMax}\n`;
-            let Attempt = `Attempts left: ${attemptsLeft}\n`;
-            let totalPrize = `Total prize: ${userPrize}\n`
-            let posiblePrize = `Possible price on current attempt: ${prize[i]}`;
-            let message = `${MinMax}${Attempt}${totalPrize}${posiblePrize}`;
-            Pocket = +prompt(`Enter a number of pocket on which the ball could land. \n${message}`);
-            console.log(Pocket);
-            if (number === Pocket) {
-                userPrize += prize[i];
-                start = confirm(`Congratulation, you won! Your prize is: ${userPrize} $.\nDo you want to continue?`);
-                if (start) {
-                    win = true;
-                    i = attempts;
-                    numMax += step;
-                    for (let j = 0; j < prize.length; j++) {
-                        prize[j] *= 2;
-                    }
-                } else {
-                    alert(`Thank you for your participation. Your prize is: ${userPrize} $`);
-                }
-            } else {
-                alert(`Thank you for your participation. Your prize is: ${userPrize} $`);
-                if (i === attempts) {
-                    start = confirm(`Do you want to play a game again?`);
-                    win = true;
-                    userPrize = 0;
-                    numMax = maxNumRange;
-                    prize = [atteFirst, atteSecon, atteThir];
-                }
-            } attemptsLeft--;
+let numberUser;
+let gameAgain;
+let gameContinue;
+let number = Math.floor(Math.random() * (numMax - numMin));
+const step = 4;
+const stepPrize = 2;
+const mess = confirm(`Do you want to play a game?`);
+if (!mess) {
+    alert(`You did not become a billionaire, but can.`);
+}else {
+    for (let i = 3; i >0; i--) {
+        numberUser = +prompt(`Choose a roulette pocket number from 0 to ${maxNumRange}
+               Attempts left: ${i}
+               Total prize: ${userPrize}$
+               Possible prize on current attempt: ${prize[i]}$`);
+        if (number === numberUser) {
+            gameContinue = confirm(
+                `Congratulation, you won! Your prize is: ${(userPrize += prize[i])}$. Do you want to continue?`);
         }
+        if (number !== numberUser && i <= 1) {
+            alert(`Thank you for your participation. Your prize is: ${(userPrize += prize[0])}$`);
+            gameAgain = confirm('Do you want to play again?');
+        }
+        if (gameAgain === false) {
+            break;
+        }
+        if (gameContinue === false) {
+            alert(`Thank you for your participation. Your prize is: ${userPrize}$`);
+            gameAgain = confirm('Do you want to play again?');
+        } else if (gameContinue === true) {
+            maxNumRange += step;
+            number = Math.floor(Math.random() * (numMax - numMin));
+            prize = prize.map(item => item * stepPrize);
+            i = step;
+        } else if (gameAgain === true) {
+            userPrize = 0;
+            number = Math.floor(Math.random() * (numMax - numMin));
+            prize = [0, atteThir, atteSecon, atteFirst];
+            i = step;
+        }
+        gameAgain = null;
+        gameContinue = null;
     }
-} while (start);
+}
