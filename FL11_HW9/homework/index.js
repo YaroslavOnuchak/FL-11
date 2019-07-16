@@ -37,28 +37,28 @@ function mapArrey(array, fun){
     executeforEach(array, function(item){
         returnArrey.push(fun(item));
     });
-    return returnArrey[i]+3;
+    return returnArrey;
 }
 //task4
 function filterArray(array, fun) {
 let filtArray = [];
 executeforEach(array, function (item) {
-    if (fun(item)>3){
+    if (fun(item)){
         filtArray.push(item);
     }
 });
 return filtArray;
 }
 //task5.
-function showFormattedDate(string) {
-    let date = time.toDateString();
+function showFormattedDate(t) {
+    let date = t.toDateString();
     let slic = 3;
     date = date.slice(slic);
     return `Date: ${date}`;
 }
 //task6.
-function canConvertToDate(string) {
-    let  date = new Date(string);
+function canConvertToDate(t) {
+    let date = new Date(t);
     return !isNaN(date);
 }
 //task7.
