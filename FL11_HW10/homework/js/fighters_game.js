@@ -7,35 +7,35 @@ const myFighter = new Fighter({
 
 const yourFighter = new Fighter({
   name: 'Batman',
-  damage: 20,
+  damage: 25,
   hp: 100,
-  agility: 40
+  agility: 50
 });
 
-function Fighter(properties) {
-  let health = properties.hp,
+function Fighter(playersInfo) {
+  let health = playersInfo.hp,
      wins = 0,
     losses = 0;
     
   return {
     get getName() {
-      return properties.name;
+      return playersInfo.name;
     },
     get getDamage() {
-      return properties.damage;
+      return playersInfo.damage;
     },
     get getAgility() {
-      return properties.agility;
+      return playersInfo.agility;
     },
     get getHealth() {
       return health;
     },
 
     attack(fighter) {
-      const fullChance = 100;
-      let probability = fullChance - fighter.getAgility;
-      let chance = Math.floor(Math.random() * (fullChance));
-      if (chance <= probability) {
+      const maxAgility = 100;
+      let chanceAgility = maxAgility - fighter.getAgility;
+      let chanceHit = Math.floor(Math.random() * maxAgility);
+      if (chanceHit <= chanceAgility) {
         fighter.dealDamage(this.getDamage);
         return `${this.getName} makes ${this.getDamage} damage to ${fighter.getName}`;
       } else {
@@ -44,23 +44,23 @@ function Fighter(properties) {
     },
 
     logCombatHistory() {
-      return `Name: ${this.getName}, Wins: ${wins}, Losses: ${losses}`;
+      console.log(`Name: ${this.getName}, Wins: ${wins}, Losses: ${losses}`);
     },
 
-    heal(amountHp) {
-      if (health + amountHp > this.getHealth) {
+    heal(restoreHp) {
+      if (health + restoreHp > this.getHealth) {
         health = this.getHealth;
       } else {
-        health = health + amountHp;
+        health += restoreHp;
       }
       return health;
     },
 
-    dealDamage(amountDmg) {
-      if (health - amountDmg < 0) {
+    dealDamage(decreaseHp) {
+      if (health - decreaseHp < 0) {
         health = 0;
       } else {
-        health = health - amountDmg;
+        health -= decreaseHp;
       }
       return health;
     },
@@ -95,18 +95,16 @@ function battle(myFighter, yourFighter) {
   if (myFighter.getHealth === 0) {
     myFighter.addLoss();
     yourFighter.addWin();
-    console.log(`${myFighter.getName} health: ${myFighter.getHealth}`);
-    console.log(`${yourFighter.getName} health: ${yourFighter.getHealth}`);
-    console.log(myFighter.logCombatHistory());
-    console.log(yourFighter.logCombatHistory());
+
   } else if (yourFighter.getHealth === 0) {
     myFighter.addWin();
     yourFighter.addLoss();
-    console.log(`${myFighter.getName} health: ${myFighter.getHealth}`);
-    console.log(`${yourFighter.getName} health: ${yourFighter.getHealth}`);
-    console.log(myFighter.logCombatHistory());
-    console.log(yourFighter.logCombatHistory());
+
   }
 }
 
 battle(myFighter, yourFighter);
+myFighter.logCombatHistory();
+yourFighter.logCombatHistory();
+console.log(`${myFighter.getName} health: ${myFighter.getHealth}`);
+console.log(`${yourFighter.getName} health: ${yourFighter.getHealth}`);
