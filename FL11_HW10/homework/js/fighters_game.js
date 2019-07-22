@@ -83,19 +83,15 @@ function battle(myFighter, yourFighter) {
   } else if (yourFighter.getHealth === 0) {
     console.log(`${yourFighter.getName} is dead and can't fight`);
   }
-
   while (myFighter.getHealth > 0 && yourFighter.getHealth > 0) {
     console.log(myFighter.attack(yourFighter));
     if (yourFighter.getHealth > 0) {
-
-      console.log(yourFighter.attack(myFighter));
+     console.log(yourFighter.attack(myFighter));
     }
   }
-
   if (myFighter.getHealth === 0) {
     myFighter.addLoss();
     yourFighter.addWin();
-
   } else if (yourFighter.getHealth === 0) {
     myFighter.addWin();
     yourFighter.addLoss();
@@ -106,5 +102,4 @@ function battle(myFighter, yourFighter) {
 battle(myFighter, yourFighter);
 myFighter.logCombatHistory();
 yourFighter.logCombatHistory();
-console.log(`${myFighter.getName} health: ${myFighter.getHealth}`);
-console.log(`${yourFighter.getName} health: ${yourFighter.getHealth}`);
+battle(myFighter, yourFighter);
