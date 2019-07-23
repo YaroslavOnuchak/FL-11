@@ -1,197 +1,186 @@
 let rootNode = document.getElementById('root');
+let input = document.getElementById('input')
+let list = document.getElementById('list')
+let plus = document.getElementById('plus')
+let deleteBtns = document.querySelectorAll('.delete')
+let editBtns = document.querySelectorAll('.edit')
+let items = document.querySelectorAll('#list .item');
+let checkBtns = document.querySelectorAll('.checkbox')
 
-// Your code goes here
-let addButtone = document.getElementById('add_icon');
-let taskList = document.getElementById('toDoList');
-let addInput = document.getElementById('add_action');
-let checkbox = document.querySelectorAll('input[type="checkbox"');
 
-addButtone.onclick = function() {
-    if (addInput.value !== '') {
-        let item = document.createElement('div');
-        item.classList.add('inline-item');
-        item.innerHTML = `<div class="deal hidden">
-            <input type="text" class="edition">
-            <i class="material-icons save">save</i>
-        </div>
-        <div class='deal edit'>
-        <div class='task'>
-            <input type="checkbox">
-            <li class="list-item">${addInput.value}</li>
-            <i class="material-icons edit">create</i>
-        </div>
-            <i class="material-icons delete">delete</i>
-        </div>`;
-        taskList.appendChild(item);
-        addInput.value = '';
+function createItem(inputValue){
+  let li = document.createElement('li')
+  let checkBox =document.createElement('input')
+  let saveBtn = document.createElement('i')  
+  let span = document.createElement('span')
+  let editBtn = document.createElement('i')
+  let deleteBtn = document.createElement('i')
+  let editInput = document.createElement('input')
+  
+  li.className = 'item'
+  li.draggable = true
+  checkBox.type = 'checkbox'
+  checkBox.className = 'checkbox'
+  editInput.type = 'text'
+  editInput.className = 'notdisplay'
+  saveBtn.className = 'material-icons btn-i save notdisplay'
+  saveBtn.innerText = 'save'
+  editBtn.className = 'material-icons btn-i edit'
+  editBtn.innerText = 'edit'
+  deleteBtn.className = 'material-icons btn-i delete'
+  deleteBtn.innerText = 'delete'
+  span.innerText = inputValue
+
+  li.addEventListener('dragstart', dragStart);
+  li.addEventListener('dragover', dragOver);
+  li.addEventListener('drop', drop);
+  checkBox.addEventListener('click', checkRadioBtn)
+  deleteBtn.addEventListener('click', deleteItem)
+  editBtn.addEventListener('click', editItem)
+ 
+  li.appendChild(checkBox)
+  li.appendChild(editInput)
+  li.appendChild(saveBtn)
+  li.appendChild(span)
+  li.appendChild(editBtn)
+  li.appendChild(deleteBtn)
+
+  return li
+}
+
+function addItem() {  
+  checkAmounthAdd()
+  let text = input.value
+  let newLi = createItem(text)
+  list.appendChild(newLi)
+  input.value = ''
+  verify()
+}
+
+function editItem(){
+  let item = this.parentNode;
+  let editInput = item.querySelector('input[type=text]')
+  let savBtn = item.querySelector('.save')
+  let span = item.querySelector('span')
+  let editBtn = item.querySelector('.edit')
+  
+  editInput.classList.remove('notdisplay')
+  span.classList.add('notdisplay')
+  savBtn.classList.remove('notdisplay')
+  editBtn.classList.add('notdisplay')
+
+  savBtn.addEventListener('click', saveTask)
+  editInput.value = span.innerText
+
+  function saveTask () {
+    span.innerText = editInput.value
+    editInput.classList.add('notdisplay')
+    span.classList.remove('notdisplay')
+    savBtn.classList.add('notdisplay')
+    editBtn.classList.remove('notdisplay')
+  }
+}
+
+function deleteItem () {
+  list.removeChild(this.parentNode)
+  checkAmounthDel()
+}
+
+function checkRadioBtn () {
+  if(this.checked){
+    this.disabled = true
+  }
+}
+
+function verify() {
+  if(input.value === '') {
+    plus.disabled = true
+  } else { 
+    plus.disabled = false;
+  }
+}
+
+function checkAmounthAdd() {
+  const ascessLength = 9
+  let li = document.querySelectorAll('li')
+  let str = document.createElement(`p`)
+  let parent = document.querySelector('h2').nextElementSibling
+  
+  str.className = `temp`
+  str.innerText = `Maximum item per list are created`
+    
+  if(li.length === ascessLength ) {
+    input.disabled = true
+    plus.disabled = true
+    parent.parentNode.insertBefore(str, parent )
+  } 
+}
+
+function checkAmounthDel() {
+  const controlLength = 9
+  let li = document.querySelectorAll('li')
+
+  if(li.length === controlLength ) {
+    document.querySelector('.header').removeChild(document.querySelector('.temp'))
+    input.disabled = false
+    plus.disabled = false
+  } 
+}
+
+// !drag n drop
+
+let dragItem = null;
+
+function dragStart(e) {
+    dragItem = this;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.outerHTML);
+}
+
+function dragEnter(e) {
+  e.preventDefault();
+  return false
+}
+
+function dragOver(e) {
+    e.preventDefault();
+    this.classList.add('over');
+}
+
+function drop(e) {
+    if (dragItem !== this) {
+        this.parentNode.removeChild(dragItem);
+        let dropHTML = e.dataTransfer.getData('text/html');
+        this.insertAdjacentHTML('beforebegin', dropHTML);
+        let dropItem = this.previousSibling;
+        dropItem.addEventListener('dragstart', dragStart);
+        dropItem.addEventListener('dragover', dragOver);
+        dropItem.addEventListener('drop', drop);
     }
+    this.classList.remove('over');
+    return false;
 }
 
-document.addEventListener('change', function(e) {
-    if (e.target.type === 'checkbox'){
-        e.target.disabled = true;
-    } 
+input.addEventListener('input', verify)
+plus.addEventListener('click', addItem)
+editBtns.forEach( function(item) {
+    item.addEventListener('click', editItem)
+  }
+)
 
-});
+checkBtns.forEach( function(item) {
+  item.addEventListener('click', checkRadioBtn)
+  }
+)
 
+deleteBtns.forEach( function(item) {
+  item.addEventListener('click', deleteItem)
+ }
+)
 
-var btns = document.getElementsByClassName('intro__btn');
-var par = document.getElementsByClassName('main');
-btns[0].onclick = function() {
-  par[0].classList.add("main--main-bg");
-}
-btns[1].onclick = function() {
-  par[0].classList.remove("main--main-bg");
-}
-
-
-let editIcon = document.getElementsByClassName('edit_icon');
-let editInput = document.getElementsByClassName('edit_input');
-let saveE = document.getElementsByClassName('save');
-let chek =document.getElementsByClassName('checkbox');
-let del = document.getElementsByClassName('delete')
-let out=document.getElementsByClassName('out')
-editIcon[0].onclick = function() {
-  editInput[0].classList.remove("edit");
-  saveE[0].classList.remove("edit");
-  chek[0].classList.add("edit");
-  editIcon[0].classList.add("edit");
-  del[0].classList.add("edit");
-
-}
-saveE[0].onclick = function(){
-editInput[0].classList.add("edit");
-  saveE[0].classList.add("edit");
-  chek[0].classList.remove("edit");
-  editIcon[0].classList.remove("edit");
-  del[0].classList.remove("edit");
-  out[0].innerHTML=editInput[0];
-}
-
-
-editIcon[1].onclick = function() {
-  editInput[1].classList.remove("edit");
-  saveE[1].classList.remove("edit");
-  chek[1].classList.add("edit");
-  editIcon[1].classList.add("edit");
-  del[1].classList.add("edit");
-}
-saveE[1].onclick = function(){
-editInput[1].classList.add("edit");
-  saveE[1].classList.add("edit");
-  chek[1].classList.remove("edit");
-  editIcon[1].classList.remove("edit");
-  del[1].classList.remove("edit");
-}
-editIcon[2].onclick = function() {
-  editInput[2].classList.remove("edit");
-  saveE[2].classList.remove("edit");
-  chek[2].classList.add("edit");
-  editIcon[2].classList.add("edit");
-  del[2].classList.add("edit");
-}
-saveE[2].onclick = function(){
-editInput[2].classList.add("edit");
-  saveE[2].classList.add("edit");
-  chek[2].classList.remove("edit");
-  editIcon[2].classList.remove("edit");
-  del[2].classList.remove("edit");
-}
-editIcon[3].onclick = function() {
-  editInput[3].classList.remove("edit");
-  saveE[3].classList.remove("edit");
-  chek[3].classList.add("edit");
-  editIcon[3].classList.add("edit");
-  del[3].classList.add("edit");
-}
-saveE[3].onclick = function(){
-editInput[3].classList.add("edit");
-  saveE[3].classList.add("edit");
-  chek[3].classList.remove("edit");
-  editIcon[3].classList.remove("edit");
-  del[3].classList.remove("edit");
-}
-editIcon[4].onclick = function() {
-  editInput[4].classList.remove("edit");
-  saveE[4].classList.remove("edit");
-  chek[4].classList.add("edit");
-  editIcon[4].classList.add("edit");
-  del[4].classList.add("edit");
-}
-saveE[4].onclick = function(){
-editInput[4].classList.add("edit");
-  saveE[4].classList.add("edit");
-  chek[4].classList.remove("edit");
-  editIcon[4].classList.remove("edit");
-  del[4].classList.remove("edit");
-}
-editIcon[5].onclick = function() {
-  editInput[5].classList.remove("edit");
-  saveE[5].classList.remove("edit");
-  chek[5].classList.add("edit");
-  editIcon[5].classList.add("edit");
-  del[5].classList.add("edit");
-}
-saveE[5].onclick = function(){
-editInput[5].classList.add("edit");
-  saveE[5].classList.add("edit");
-  chek[5].classList.remove("edit");
-  editIcon[5].classList.remove("edit");
-  del[5].classList.remove("edit");
-}
-editIcon[6].onclick = function() {
-  editInput[6].classList.remove("edit");
-  saveE[6].classList.remove("edit");
-  chek[6].classList.add("edit");
-  editIcon[6].classList.add("edit");
-  del[6].classList.add("edit");
-}
-saveE[6].onclick = function(){
-editInput[6].classList.add("edit");
-  saveE[6].classList.add("edit");
-  chek[6].classList.remove("edit");
-  editIcon[6].classList.remove("edit");
-  del[6].classList.remove("edit");
-}
-editIcon[7].onclick = function() {
-  editInput[7].classList.remove("edit");
-  saveE[7].classList.remove("edit");
-  chek[7].classList.add("edit");
-  editIcon[7].classList.add("edit");
-  del[7].classList.add("edit");
-}
-saveE[7].onclick = function(){
-editInput[7].classList.add("edit");
-  saveE[7].classList.add("edit");
-  chek[7].classList.remove("edit");
-  editIcon[7].classList.remove("edit");
-  del[7].classList.remove("edit");
-}
-editIcon[8].onclick = function() {
-  editInput[8].classList.remove("edit");
-  saveE[8].classList.remove("edit");
-  chek[8].classList.add("edit");
-  editIcon[8].classList.add("edit");
-  del[8].classList.add("edit");
-}
-saveE[8].onclick = function(){
-editInput[8].classList.add("edit");
-  saveE[8].classList.add("edit");
-  chek[8].classList.remove("edit");
-  editIcon[8].classList.remove("edit");
-  del[8].classList.remove("edit");
-}
-editIcon[9].onclick = function() {
-  editInput[9].classList.remove("edit");
-  saveE[9].classList.remove("edit");
-  chek[9].classList.add("edit");
-  editIcon[9].classList.add("edit");
-  del[9].classList.add("edit");
-}
-saveE[9].onclick = function(){
-editInput[9].classList.add("edit");
-  saveE[9].classList.add("edit");
-  chek[9].classList.remove("edit");
-  editIcon[9].classList.remove("edit");
-  del[9].classList.remove("edit");
-}
+items.forEach(function(item){
+  item.addEventListener('dragstart', dragStart);
+  item.addEventListener('dragover', dragOver);
+  item.addEventListener('drop', drop);
+  }
+);
