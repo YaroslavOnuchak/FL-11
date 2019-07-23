@@ -1,0 +1,55 @@
+/* Your styles goes here */
+*{
+
+}
+
+.material-icons{
+	
+}
+main .material-icons, h2{
+	color: #3CB3FE;
+}
+#add_icon {
+	margin: 0;
+	background-color:  #BDC4CC;
+	 font-size: 40px; 
+}
+
+
+ .btn {
+    background-color: white;
+    border: none;
+    color: white;
+   
+    cursor: pointer;
+    align-content: center;
+    padding: 0;
+  
+}
+#add_action{
+	width: 85%;
+	height: 3em;
+	padding-left: 1%;
+	border: 1px solid #BDC4CC;
+}
+header{
+	margin-bottom: 20px;
+
+}
+hr{
+border: 0;
+background: rgba(60,179,254, 0.2);
+height : 10px;
+}
+.edit{
+	display: none;
+}
+
+
+.main {
+  color: red;
+}
+
+.main--main-bg {
+  background-color: green;
+} 
