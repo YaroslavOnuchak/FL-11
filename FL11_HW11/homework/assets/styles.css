@@ -12,15 +12,15 @@ i{
   margin: 0.25rem;
 }
 
-.container{
-  max-width: 800px;
+.main{
+  max-width: 850px;
   margin: 0 auto;
   padding-top: 1rem;
 }
 
 .header{
-  font-size: 36px;
-  color: skyblue;
+  font-size: 35px;
+  color: #3CB3FE;
 }
 
 .input-add{
@@ -28,11 +28,11 @@ i{
   width: 80%;
   padding: 1rem;
   margin: 1rem 0;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .plus-btn{
-  margin-left: 5%;
+  margin-left: 4%;
   padding: 0.25rem 0.5rem;
   font-size: 24px;
   color: #fff;
@@ -60,7 +60,7 @@ li{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  color: skyblue;
+  color: #3CB3FE;
 }
 
 li:first-child{
@@ -81,7 +81,7 @@ li input[type = text]{
 
 .btn-i{
   cursor: pointer;
-  color: rgb(80, 15, 201);
+  color: #3CB3FE;
 }
 
 .btn-i:hover{
