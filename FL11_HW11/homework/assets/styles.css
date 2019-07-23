@@ -1,101 +1,55 @@
+/* Your styles goes here */
 *{
-  margin: 0;
-  padding: 0;
+
 }
 
-h2,
-p{
-  text-align: center;
+.material-icons{
+	
+}
+main .material-icons, h2{
+	color: #3CB3FE;
+}
+#add_icon {
+	margin: 0;
+	background-color:  #BDC4CC;
+	 font-size: 40px; 
 }
 
-i{
-  margin: 0.25rem;
-}
 
-.main{
-  max-width: 850px;
-  margin: 0 auto;
-  padding-top: 1rem;
+ .btn {
+    background-color: white;
+    border: none;
+    color: white;
+   
+    cursor: pointer;
+    align-content: center;
+    padding: 0;
+  
 }
-
-.header{
-  font-size: 35px;
-  color: #3CB3FE;
+#add_action{
+	width: 85%;
+	height: 3em;
+	padding-left: 1%;
+	border: 1px solid #BDC4CC;
 }
+header{
+	margin-bottom: 20px;
 
-.input-add{
-  display: inline-block;
-  width: 80%;
-  padding: 1rem;
-  margin: 1rem 0;
-  font-size: 17px;
 }
-
-.plus-btn{
-  margin-left: 4%;
-  padding: 0.25rem 0.5rem;
-  font-size: 24px;
-  color: #fff;
-  background: rgba(170, 178, 178, 0.9);
-  border: none;
-  cursor: pointer;
-  outline: none;
-}
-
-.plus-btn:disabled {
-  opacity: 0.7;
-}
-
 hr{
-  color: aqua;
+border: 0;
+background: rgba(60,179,254, 0.2);
+height : 10px;
+}
+.edit{
+	display: none;
 }
 
-.ulist{
-  list-style: none;
-  padding-left: 0;
+
+.main {
+  color: red;
 }
 
-li{
-  font-size: 18px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: #3CB3FE;
-}
-
-li:first-child{
-  margin-top: 0.5rem;
-}
-
-input[type = checkbox]{
-  margin: 0.25rem;
-}
-
-li input[type = text]{
-  padding: 0.25rem;
-}
-
-.delete{
-  margin-left: auto;;
-}
-
-.btn-i{
-  cursor: pointer;
-  color: #3CB3FE;
-}
-
-.btn-i:hover{
-  opacity: 0.5;
-}
-
-.notdisplay{
-  display: none;
-}
-
-.display{
-  display: block;
-}
-
-[draggable] {
-  user-select: none;
-}
+.main--main-bg {
+  background-color: green;
+} 
