@@ -1,7 +1,7 @@
 let rootNode = document.getElementById('root');
 let input = document.getElementById('input')
 let list = document.getElementById('list')
-let plus = document.getElementById('plus')
+let plus = document.getElementById('bth_plus')
 let deleteBtns = document.querySelectorAll('.delete')
 let editBtns = document.querySelectorAll('.edit')
 let items = document.querySelectorAll('#list .item');
@@ -37,17 +37,15 @@ function createItem(inputValue){
   checkBox.addEventListener('click', checkRadioBtn)
   deleteBtn.addEventListener('click', deleteItem)
   editBtn.addEventListener('click', editItem)
- 
+
   li.appendChild(checkBox)
   li.appendChild(editInput)
   li.appendChild(saveBtn)
   li.appendChild(span)
   li.appendChild(editBtn)
   li.appendChild(deleteBtn)
-
   return li
 }
-
 function addItem() {  
   checkAmounthAdd()
   let text = input.value
@@ -99,7 +97,6 @@ function verify() {
     plus.disabled = false;
   }
 }
-
 function checkAmounthAdd() {
   const ascessLength = 9
   let li = document.querySelectorAll('li')
@@ -127,10 +124,7 @@ function checkAmounthDel() {
   } 
 }
 
-// !drag n drop
-
 let dragItem = null;
-
 function dragStart(e) {
     dragItem = this;
     e.dataTransfer.effectAllowed = 'move';
