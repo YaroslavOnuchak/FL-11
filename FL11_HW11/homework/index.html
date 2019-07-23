@@ -8,113 +8,35 @@
 </head>
 <body>
   <div id="root"></div>
-  
-<header>
-	<h2>TODO Cat List</h2>
-	<form action="#">
-	<input type="text" placeholder='Add new action' id="add_action"/> 
-	<button class="btn add"><i class="material-icons" id="add_icon">
-add
-</i></button>
-	</form>
-	
-	
-
-	
-
-</header>
-<hr/>
- <div class="task-list">
-            <ul id='toDoList'>
-            </ul>
-        </div>
+    <div class="main">
+      <div class="header">
+        <h3>TODO cat list</h3>
+        <input id="newAction" class="input-add" type="text" placeholder="Add new action">
+        <button id='bth_plus' class="plus-btn" disabled>+</button>
+        <hr>
+      </div>
+      <div class="out">
+        <ul id="list" class="ulist">
+          <li class="item" draggable="true">
+            <label class="labelChek">
+              <input type="checkbox" class="checkbox" name="checkbox1" id="checkbox1"/><div class="checkbox_styl"></div>
+            </label>  
+              <input type="text" name="edit-input1" id="edit-input1"  class="notdisplay"/>
+              <span class="inputText">Buy cat</span>
+              <i class="material-icons notdisplay btn-i save">save</i>
+              <i class="material-icons btn-i edit">edit</i><i class="material-icons btn-i delete">delete</i>
+          </li>
+          <li class="item" draggable="true">
+            <label class="labelChek">
+              <input type="checkbox" class="checkbox" name="checkbox2" id="checkbox2"/><div class="checkbox_styl"></div>
+            </label>   
+            <input type="text" name="edit-input2" id="edit-input2"  class="notdisplay"/>
+            <span class="inputText">Find the cat</span>
+            <i class="material-icons notdisplay btn-i save">save</i>
+            <i class="material-icons btn-i edit">edit</i><i class="material-icons btn-i delete">delete</i></li>
+        </ul>
+      </div>
     </div>
-<main>
-<div id="list_1">
-<input type="checkbox" class="checkbox">
-<output id="out_1" class="out"></output>
-<input type="text" class="edit_input edit">
-<button class="btn edit_icon"><i class="material-icons">edit</i></button>
-<button class="btn save edit"><i class="material-icons">save</i></button>
-<button class="btn delete"><i class="material-icons">delete</i></button>
-</div>	
-<div id="list_2" >
-<input type="checkbox" class="checkbox">
-<output id="out_2" class="out"></output>
-<input type="text" class="edit_input edit">
-<button class="btn edit_icon"><i class="material-icons">edit</i></button>
-<button class="btn save edit"><i class="material-icons">save</i></button>
-<button class="btn delete"><i class="material-icons">delete</i></button>
-</div>
-<div id="list_3" >
-<input type="checkbox" class="checkbox">
-<output id="out_3" class="out"></output>
-<input type="text" class="edit_input edit">
-<button class="btn edit_icon"><i class="material-icons">edit</i></button>
-<button class="btn save edit"><i class="material-icons">save</i></button>
-<button class="btn delete"><i class="material-icons">delete</i></button>
-</div>
-<div id="list_4" >
-<input type="checkbox" class="checkbox">
-<output id="out_4" class="out"></output>
-<input type="text" class="edit_input edit">
-<button class="btn edit_icon"><i class="material-icons">edit</i></button>
-<button class="btn save edit"><i class="material-icons">save</i></button>
-<button class="btn delete"><i class="material-icons">delete</i></button>
-</div>
-<div id="list_5" >
-<input type="checkbox" class="checkbox">
-<output id="out_5" class="out"></output>
-<input type="text" class="edit_input edit">
-<button class="btn edit_icon"><i class="material-icons">edit</i></button>
-<button class="btn save edit"><i class="material-icons">save</i></button>
-<button class="btn delete"><i class="material-icons">delete</i></button>
-</div>
-<div id="list_6" >
-<input type="checkbox" class="checkbox">
-<output id="out_6" class="out"></output>
-<input type="text" class="edit_input edit">
-<button class="btn edit_icon"><i class="material-icons">edit</i></button>
-<button class="btn save edit"><i class="material-icons">save</i></button>
-<button class="btn delete"><i class="material-icons">delete</i></button>
-</div>
-<div id="list_7" >
-<input type="checkbox" class="checkbox">
-<output id="out_7" class="out"></output>
-<input type="text" class="edit_input edit">
-<button class="btn edit_icon"><i class="material-icons">edit</i></button>
-<button class="btn save edit"><i class="material-icons">save</i></button>
-<button class="btn delete"><i class="material-icons">delete</i></button>
-</div>
-<div id="list_8" >
-<input type="checkbox" class="checkbox">
-<output id="out_8" class="out"></output>
-<input type="text" class="edit_input edit">
-<button class="btn edit_icon"><i class="material-icons">edit</i></button>
-<button class="btn save edit"><i class="material-icons">save</i></button>
-<button class="btn delete"><i class="material-icons">delete</i></button>
-</div>
-<div id="list_9" >
-<input type="checkbox" class="checkbox">
-<output id="out_9" class="out"></output>
-<input type="text" class="edit_input edit">
-<button class="btn edit_icon"><i class="material-icons">edit</i></button>
-<button class="btn save edit"><i class="material-icons">save</i></button>
-<button class="btn delete"><i class="material-icons">delete</i></button>
-</div>
-<div id="list_10" >
-<input type="checkbox" class="checkbox">
-<output id="out_10" class="out"></output>
-<input type="text" class="edit_input edit">
-<button class="btn edit_icon"><i class="material-icons">edit</i></button>
-<button class="btn save edit"><i class="material-icons">save</i></button>
-<button class="btn delete"><i class="material-icons">delete</i></button>
-</div>
-
-</main>
-<p class="main">TEXT</p>
-<button class="intro__btn  dsfdsf">Добавить класс</button>
-<button class="intro__btn">Удалить класс</button> 
   <script src="./src/app.js"></script>
 </body>
 </html>
