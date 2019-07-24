@@ -82,9 +82,11 @@ input[type = checkbox]{
 
 }
 .checkbox_styl{
+  display: inline-block;
   height: 25px;
   width: 25px;
   border: 1px solid rgba(170, 178, 178, 0.9);
+  background: white
 }
 .checkbox_styl:after {
   content: "";
