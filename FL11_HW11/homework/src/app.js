@@ -12,11 +12,11 @@ function createItem(value){
   let li = document.createElement('li')
   let labelChek = document.createElement('label')
   let checkBox =document.createElement('input')
-  let checkboxStyl = document.createElement('div')
+  let checkboxStyl = document.createElement('span')
   let saveBtn = document.createElement('i')  
   let span = document.createElement('span')
   let editBtn = document.createElement('i')
-  let delBtn  = document.createElement('i')
+  let delBtn = document.createElement('i')
   let editInput = document.createElement('input')
   
   li.className = 'list_li'
