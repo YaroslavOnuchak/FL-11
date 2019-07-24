@@ -10,30 +10,40 @@
   <div id="root"></div>
     <div class="main">
       <div class="header">
-        <h3>TODO cat list</h3>
-        <input id="newAction" class="input-add" type="text" placeholder="Add new action">
-        <button id='bth_plus' class="plus-btn" disabled>+</button>
+        <h3>TODO Cat List</h3>
+        <input id="newAction" class="text_add" type="text" placeholder="Add new action">
+        <button id='bth_plus' class="btn_add" disabled=""><i class="material-icons add_icons">add</i></button>
         <hr>
       </div>
-      <div class="out">
-        <ul id="list" class="ulist">
-          <li class="item" draggable="true">
+      <div class="list_block">
+        <ul id="list_main" class="list_ul">
+          <li class="list_li" draggable="true">
             <label class="labelChek">
-              <input type="checkbox" class="checkbox" name="checkbox1" id="checkbox1"/><div class="checkbox_styl"></div>
+              <input type="checkbox" class="checkbox"/><div class="checkbox_styl"></div>
             </label>  
-              <input type="text" name="edit-input1" id="edit-input1"  class="notdisplay"/>
+              <input type="text"  class="hide"/>
               <span class="inputText">Buy cat</span>
-              <i class="material-icons notdisplay btn-i save">save</i>
-              <i class="material-icons btn-i edit">edit</i><i class="material-icons btn-i delete">delete</i>
+              <i class="material-icons btn_icon hide  save">save</i>
+              <i class="material-icons btn_icon edit">edit</i><i class="material-icons btn_icon delete">delete</i>
           </li>
-          <li class="item" draggable="true">
+          <li class="list_li" draggable="true">
             <label class="labelChek">
-              <input type="checkbox" class="checkbox" name="checkbox2" id="checkbox2"/><div class="checkbox_styl"></div>
+              <input type="checkbox" class="checkbox"/><div class="checkbox_styl"></div>
             </label>   
-            <input type="text" name="edit-input2" id="edit-input2"  class="notdisplay"/>
-            <span class="inputText">Find the cat</span>
-            <i class="material-icons notdisplay btn-i save">save</i>
-            <i class="material-icons btn-i edit">edit</i><i class="material-icons btn-i delete">delete</i></li>
+            <input type="text" class="hide"/>
+            <span class="inputText">Shave the cat</span>
+            <i class="material-icons hide btn_icon save">save</i>
+            <i class="material-icons btn_icon edit">edit</i><i class="material-icons btn_icon delete">delete</i>
+          </li>
+          <li class="list_li" draggable="true">
+            <label class="labelChek">
+              <input type="checkbox" class="checkbox"/><div class="checkbox_styl"></div>
+            </label>   
+            <input type="text" class="hide"/>
+            <span class="inputText">Sell the sfinks</span>
+            <i class="material-icons hide btn_icon save">save</i>
+            <i class="material-icons btn_icon edit">edit</i><i class="material-icons btn_icon delete">delete</i>
+          </li>
         </ul>
       </div>
     </div>
