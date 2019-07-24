@@ -1,14 +1,14 @@
 let rootNode = document.getElementById('root');
-let input = document.getElementById('newAction')
-let list = document.getElementById('list')
-let plus = document.getElementById('bth_plus')
-let deleteBtns = document.querySelectorAll('.delete')
+let newAction = document.getElementById('newAction')
+let list = document.getElementById('list_main')
+let add = document.getElementById('bth_plus')
+let delBtn = document.querySelectorAll('.delete')
 let editBtns = document.querySelectorAll('.edit')
-let items = document.querySelectorAll('#list .item');
+let elements = document.querySelectorAll('#list_main .list_li');
 let checkBtns = document.querySelectorAll('.checkbox')
 
 
-function createItem(inputValue){
+function createItem(value){
   let li = document.createElement('li')
   let labelChek = document.createElement('label')
   let checkBox =document.createElement('input')
@@ -16,31 +16,31 @@ function createItem(inputValue){
   let saveBtn = document.createElement('i')  
   let span = document.createElement('span')
   let editBtn = document.createElement('i')
-  let deleteBtn = document.createElement('i')
+  let delBtn  = document.createElement('i')
   let editInput = document.createElement('input')
   
-  li.className = 'item'
+  li.className = 'list_li'
   li.draggable = true
   labelChek.className = 'labelChek'
   checkBox.type = 'checkbox'
   checkBox.className = 'checkbox'
   checkboxStyl.className = 'checkbox_styl'
   editInput.type = 'text'
-  editInput.className = 'notdisplay'
-  saveBtn.className = 'material-icons btn-i save notdisplay'
+  editInput.className = 'hide'
+  saveBtn.className = 'material-icons btn_icon save hide'
   saveBtn.innerText = 'save'
-  editBtn.className = 'material-icons btn-i edit'
+  editBtn.className = 'material-icons btn_icon edit'
   editBtn.innerText = 'edit'
-  deleteBtn.className = 'material-icons btn-i delete'
-  deleteBtn.innerText = 'delete'
-  span.innerText = inputValue
+  delBtn.className = 'material-icons btn_icon delete'
+  delBtn.innerText = 'delete'
+  span.innerText = value
 
   li.addEventListener('drop', drop);
   li.addEventListener('dragstart', dragStart);
   li.addEventListener('dragover', dragOver);
-  checkBox.addEventListener('click', checkRadioBtn)
-  deleteBtn.addEventListener('click', deleteItem)
-  editBtn.addEventListener('click', editItem)
+  checkBox.addEventListener('click', checkChek)
+  delBtn.addEventListener('click', delRows)
+  editBtn.addEventListener('click', editRows)
 
   li.appendChild(labelChek)
   labelChek.appendChild(checkBox)
@@ -49,107 +49,101 @@ function createItem(inputValue){
   li.appendChild(saveBtn)
   li.appendChild(span)
   li.appendChild(editBtn)
-  li.appendChild(deleteBtn)
+  li.appendChild(delBtn)
   return li 
 }
-function addItem() {  
-  checkAmounthAdd()
-  let text = input.value
+function addRows() {  
+  messageFull()
+  let text = newAction.value
   let newLi = createItem(text)
   list.appendChild(newLi)
-  input.value = ''
-  verify()
+  newAction.value = ''
+  inputChek()
 }
-
-function editItem(){
+function maxRows() {
+  const controlLength = 9
+  let li = document.querySelectorAll('li')
+  if(li.length === controlLength ) {
+    document.querySelector('.header').removeChild(document.querySelector('.temp'))
+    newAction.disabled = false
+    add.disabled = false
+  } 
+}
+function editRows(){
   let item = this.parentNode;
-  let editInput = item.querySelector('input[type=text]')
   let savBtn = item.querySelector('.save')
+  let editInput = item.querySelector('input[type=text]')
   let span = item.querySelector('span')
   let editBtn = item.querySelector('.edit')
-  
-  editInput.classList.remove('notdisplay')
-  span.classList.add('notdisplay')
-  savBtn.classList.remove('notdisplay')
-  editBtn.classList.add('notdisplay')
-
-  savBtn.addEventListener('click', saveTask)
+  editInput.classList.remove('hide')
+  savBtn.classList.remove('hide')
+  span.classList.add('hide')
+  editBtn.classList.add('hide')
+  savBtn.addEventListener('click', saveChang)
   editInput.value = span.innerText
 
-  function saveTask () {
+  function saveChang () {
     span.innerText = editInput.value
-    editInput.classList.add('notdisplay')
-    span.classList.remove('notdisplay')
-    savBtn.classList.add('notdisplay')
-    editBtn.classList.remove('notdisplay')
+    editInput.classList.add('hide')
+    savBtn.classList.add('hide')
+    span.classList.remove('hide')
+    editBtn.classList.remove('hide')
   }
 }
 
-function deleteItem () {
+function delRows () {
   list.removeChild(this.parentNode)
-  checkAmounthDel()
+  maxRows()
 }
 
-function checkRadioBtn () {
+function checkChek () {
   if(this.checked){
     this.disabled = true
   }
 }
 
-function verify() {
-  if(input.value === '') {
-    plus.disabled = true
+function inputChek() {
+  if(newAction.value === '') {
+    add.disabled = true
   } else { 
-    plus.disabled = false;
+    add.disabled = false;
   }
 }
-function checkAmounthAdd() {
-  const ascessLength = 9
+function messageFull() {
+  const maxRow = 9
   let li = document.querySelectorAll('li')
-  let str = document.createElement(`p`)
+  let p = document.createElement(`p`)
   let parent = document.querySelector('h3').nextElementSibling
   
-  str.className = `temp`
-  str.innerText = `Maximum item per list are created`
+  p.innerText = `Maximum item per list are created`
     
-  if(li.length === ascessLength ) {
-    input.disabled = true
-    plus.disabled = true
-    parent.parentNode.insertBefore(str, parent )
+  if(li.length === maxRow ) {
+    newAction.disabled = true
+    add.disabled = true
+    parent.parentNode.insertBefore(p, parent )
   } 
 }
 
-function checkAmounthDel() {
-  const controlLength = 9
-  let li = document.querySelectorAll('li')
-
-  if(li.length === controlLength ) {
-    document.querySelector('.header').removeChild(document.querySelector('.temp'))
-    input.disabled = false
-    plus.disabled = false
-  } 
-}
-
-let dragItem = null;
+let itemDrag = null;
 function dragStart(e) {
-    dragItem = this;
+    itemDrag = this;
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', this.outerHTML);
-}
-
-function dragEnter(e) {
-  e.preventDefault();
-  return false
 }
 
 function dragOver(e) {
     e.preventDefault();
     this.classList.add('over');
 }
+function dragEnter(e) {
+  e.preventDefault();
+  return false
+}
+
 
 function drop(e) {
-    if (dragItem !== this) {
-        this.parentNode.removeChild(dragItem);
+    if (itemDrag !== this) {
+        this.parentNode.removeChild(itemDrag);
         let dropHTML = e.dataTransfer.getData('text/html');
         this.insertAdjacentHTML('beforebegin', dropHTML);
         let dropItem = this.previousSibling;
@@ -160,25 +154,23 @@ function drop(e) {
     this.classList.remove('over');
     return false;
 }
-
-input.addEventListener('input', verify)
-plus.addEventListener('click', addItem)
+newAction.addEventListener('input', inputChek)
+add.addEventListener('click', addRows)
 editBtns.forEach( function(item) {
-    item.addEventListener('click', editItem)
+    item.addEventListener('click', editRows)
   }
 )
-
 checkBtns.forEach( function(item) {
-  item.addEventListener('click', checkRadioBtn)
+  item.addEventListener('click', checkChek)
   }
 )
 
-deleteBtns.forEach( function(item) {
-  item.addEventListener('click', deleteItem)
+delBtn.forEach( function(item) {
+  item.addEventListener('click', delRows)
  }
 )
 
-items.forEach(function(item){
+elements.forEach(function(item){
   item.addEventListener('dragstart', dragStart);
   item.addEventListener('dragover', dragOver);
   item.addEventListener('drop', drop);
